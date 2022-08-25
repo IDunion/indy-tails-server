@@ -15,6 +15,9 @@ RUN pip3 install --no-cache-dir -e .
 
 # delete old indy_vdr installed in von-image, use instead the python package (see requirements.txt) which includes libindy_vdr.so
 RUN rm -rf /home/indy/.local/lib/libindy_vdr.so
+RUN rm -rf /home/indy/.local/lib/python3.7/site-packages/indy_vdr/libindy_vdr.so
+
+COPY --chown=indy:indy ./docker/libindy_vdr.so /home/indy/.local/lib/python3.7/site-packages/indy_vdr/libindy_vdr.so
 
 ENTRYPOINT ["/bin/bash", "-c", "tails-server \"$@\""]
 
