@@ -17,6 +17,7 @@ RUN pip3 install --no-cache-dir -e .
 RUN rm -rf /home/indy/.local/lib/libindy_vdr.so
 RUN rm -rf /home/indy/.local/lib/python3.7/site-packages/indy_vdr/libindy_vdr.so
 
+# copy the zmq-vendored free libindy-vdr
 COPY --chown=indy:indy ./docker/libindy_vdr.so /home/indy/.local/lib/python3.7/site-packages/indy_vdr/libindy_vdr.so
 
 ENTRYPOINT ["/bin/bash", "-c", "tails-server \"$@\""]
